@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Desktop.ViewModels"
+        x:Class="Desktop.Views.ConfirmationWindow"
+        Width="400" Height="150">
+    <Design.DataContext>
+        <vm:ConfirmationWindowViewModel/>
+    </Design.DataContext>
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Text="Вы уверены, что хотите удалить пациента?" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
+            <Button Content="Да" Click="OnYesClick" Margin="0,0,10,0"/>
+            <Button Content="Нет" Click="OnNoClick"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

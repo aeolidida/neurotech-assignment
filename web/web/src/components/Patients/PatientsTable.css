@@ -1,0 +1,121 @@
+.table-container {
+  margin: 20px;
+}
+
+.table-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.search-input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 0.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  position: relative;
+  text-align: left;
+  padding: 10px;
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+th span {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+td,
+th {
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.add-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.add-button:active {
+  background-color: #3e8e41;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #da190b;
+}
+
+.delete-button:active {
+  background-color: #ba1a0e;
+}
+
+.refresh-button {
+  background-color: #2196f3;
+  color: white;
+}
+
+.refresh-button:hover {
+  background-color: #1e87db;
+}
+
+.refresh-button:active {
+  background-color: #1c80d1;
+}
+
+.edit-button {
+  background-color: #2196f3;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #1e87db;
+}
+
+.edit-button:active {
+  background-color: #1c80d1;
+}
+
+.error {
+  color: red;
+}

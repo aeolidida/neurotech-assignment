@@ -1,0 +1,7 @@
+file_storage:
+  path: "../data/list_patients.json"
+  is_encrypted: false
+server:
+  address: "localhost"
+  port: 8080
+  

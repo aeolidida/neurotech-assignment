@@ -1,0 +1,69 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Desktop.ViewModels"
+        xmlns:models="clr-namespace:Desktop.Models"
+        x:Class="Desktop.Views.MainWindow"
+        Icon="/Assets/avalon-logo.ico"
+        Title="Patients App">
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid Margin="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Заголовок -->
+            <RowDefinition Height="Auto"/> <!-- Текстовый блок со статусом -->
+            <RowDefinition Height="Auto"/> <!-- Верхняя панель с кнопками -->
+            <RowDefinition Height="Auto"/> <!-- Поле для фильтрации -->
+            <RowDefinition Height="*"/>   <!-- Область для таблицы -->
+            <RowDefinition Height="30"/>  <!-- Отступ внизу -->
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <StackPanel Margin="10" Grid.Row="0">
+            <TextBlock Text="Список пациентов" FontSize="24" HorizontalAlignment="Left" Margin="0,0,0,5"/>
+            <Rectangle Height="1" Fill="DarkGray" Margin="5,0,5,0"/>
+        </StackPanel>
+
+        <!-- Текстовый блок со статусом -->
+        <TextBlock Text="{Binding StatusMessage}" x:DataType="vm:MainWindowViewModel" Margin="10" HorizontalAlignment="Left" Grid.Row="1"/>
+
+        <!-- Верхняя панель с кнопками и статусом -->
+        <Grid Margin="10" VerticalAlignment="Top" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Click="AddButton_Click" Content="Добавить" x:DataType="vm:MainWindowViewModel">
+            </Button>
+            <Button Grid.Column="1" Command="{Binding RefreshCommand}" Content="Обновить" x:DataType="vm:MainWindowViewModel" />
+        </Grid>
+
+         <!-- Поле для фильтрации -->
+        <TextBox Grid.Row="3" Width="300" Margin="10" Watermark="Поиск по ФИО" Text="{Binding SearchText, Mode=TwoWay}" HorizontalAlignment="Right" x:DataType="vm:MainWindowViewModel"/>
+
+        <!-- Список пациентов DataGrid -->
+        <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto">
+            <DataGrid Name="Patients" ItemsSource="{Binding FilteredPatients}" AutoGenerateColumns="False" x:DataType="vm:MainWindowViewModel" 
+            CanUserSortColumns="True"  MinHeight="500" Width="1100" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="GUID" Width="300" Binding="{Binding GUID}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="ФИО" Width="300" Binding="{Binding FullName}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="День рождения" Width="180" Binding="{Binding Birthday, StringFormat=\{0:dd.MM.yyyy\}}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Пол" Width="140" Binding="{Binding Gender}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Width="180" Header="Действия">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                    <Button Click="EditButton_Click" CommandParameter="{Binding}" Content="Изменить" Margin="0,0,5,0" HorizontalAlignment="Stretch"/>
+                                    <Button Click="DeleteButton_Click" CommandParameter="{Binding GUID}" Content="Удалить" Margin="5,0,0,0" HorizontalAlignment="Stretch">
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
+</Window>
